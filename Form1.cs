@@ -224,7 +224,13 @@ namespace XML_Project
 
         private void fileSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            String txt_read = txtArea.Text;
+            for (int i = 0; i < txt_read.Length; i++)
+            {
+                if (txt_read[i] == ' ')
+               txtArea.Text = txtArea.Text.Replace(" ", String.Empty);
+                txtArea.Text = txtArea.Text.Replace("\n", "").Replace("\r", "");
+            }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
