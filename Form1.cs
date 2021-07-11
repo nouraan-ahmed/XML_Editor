@@ -231,7 +231,12 @@ namespace XML_Project
         {
             SaveFileDialog savefile = new SaveFileDialog();
             savefile.Title = "Save file as..";
-           
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter txtoutput = new StreamWriter(savefile.FileName);
+                txtoutput.Write(txtArea.Text);
+                txtoutput.Close();
+            }
         }
     }
 }
