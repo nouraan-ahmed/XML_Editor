@@ -190,7 +190,7 @@ namespace XML_Project
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileSizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formattingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toJASONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToJSONToolStripMenuItem;
     }
 }
 
