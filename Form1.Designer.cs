@@ -47,8 +47,8 @@ namespace XML_Project
             // 
             // txtArea
             // 
-            this.txtArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.txtArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtArea.AutoCompleteBracketsList = new char[] {
         '(',
@@ -69,6 +69,7 @@ namespace XML_Project
             this.txtArea.CommentPrefix = null;
             this.txtArea.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtArea.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.txtArea.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtArea.IsReplaceMode = false;
             this.txtArea.Language = FastColoredTextBoxNS.Language.XML;
             this.txtArea.LeftBracket = '<';
@@ -110,7 +111,7 @@ namespace XML_Project
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -126,7 +127,7 @@ namespace XML_Project
             // formattingToolStripMenuItem
             // 
             this.formattingToolStripMenuItem.Name = "formattingToolStripMenuItem";
-            this.formattingToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
+            this.formattingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.formattingToolStripMenuItem.Text = "Formatting";
             this.formattingToolStripMenuItem.Click += new System.EventHandler(this.formattingToolStripMenuItem_Click);
             // 
@@ -165,6 +166,7 @@ namespace XML_Project
             this.fileSizeToolStripMenuItem.Name = "fileSizeToolStripMenuItem";
             this.fileSizeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.fileSizeToolStripMenuItem.Text = "File Size";
+            this.fileSizeToolStripMenuItem.Click += new System.EventHandler(this.fileSizeToolStripMenuItem_Click);
             // 
             // Form1
             // 

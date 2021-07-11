@@ -221,5 +221,10 @@ namespace XML_Project
             }
             json_text += "\n}";
         }
+
+        private void fileSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
