@@ -226,5 +226,12 @@ namespace XML_Project
         {
 
         }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.Title = "Save file as..";
+           
+        }
     }
 }
