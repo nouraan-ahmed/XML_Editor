@@ -31,33 +31,26 @@ namespace XML_Project
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.label1 = new System.Windows.Forms.Label();
-            this.Open_btn = new System.Windows.Forms.Button();
             this.txtArea = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileSizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formattingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toJASONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.txtArea)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Choose File Location";
-            // 
-            // Open_btn
-            // 
-            this.Open_btn.Location = new System.Drawing.Point(51, 59);
-            this.Open_btn.Name = "Open_btn";
-            this.Open_btn.Size = new System.Drawing.Size(75, 33);
-            this.Open_btn.TabIndex = 2;
-            this.Open_btn.Text = "Open";
-            this.Open_btn.UseVisualStyleBackColor = true;
-            this.Open_btn.Click += new System.EventHandler(this.Open_btn_Click);
             // 
             // txtArea
             // 
+            this.txtArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtArea.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -78,15 +71,95 @@ namespace XML_Project
             this.txtArea.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtArea.IsReplaceMode = false;
             this.txtArea.Language = FastColoredTextBoxNS.Language.XML;
-            this.txtArea.Location = new System.Drawing.Point(12, 98);
+            this.txtArea.Location = new System.Drawing.Point(12, 31);
             this.txtArea.Name = "txtArea";
             this.txtArea.Paddings = new System.Windows.Forms.Padding(0);
             this.txtArea.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.txtArea.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtArea.ServiceColors")));
-            this.txtArea.Size = new System.Drawing.Size(776, 340);
+            this.txtArea.Size = new System.Drawing.Size(776, 402);
             this.txtArea.TabIndex = 4;
             this.txtArea.Text = "fastColoredTextBox1";
             this.txtArea.Zoom = 100;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.formatToolStripMenuItem,
+            this.convertToolStripMenuItem,
+            this.compressToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // formatToolStripMenuItem
+            // 
+            this.formatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.formattingToolStripMenuItem});
+            this.formatToolStripMenuItem.Name = "formatToolStripMenuItem";
+            this.formatToolStripMenuItem.Size = new System.Drawing.Size(70, 26);
+            this.formatToolStripMenuItem.Text = "Format";
+            this.formatToolStripMenuItem.Click += new System.EventHandler(this.formatToolStripMenuItem_Click);
+            // 
+            // convertToolStripMenuItem
+            // 
+            this.convertToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toJASONToolStripMenuItem});
+            this.convertToolStripMenuItem.Name = "convertToolStripMenuItem";
+            this.convertToolStripMenuItem.Size = new System.Drawing.Size(74, 26);
+            this.convertToolStripMenuItem.Text = "Convert";
+            // 
+            // compressToolStripMenuItem
+            // 
+            this.compressToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dataToolStripMenuItem,
+            this.fileSizeToolStripMenuItem});
+            this.compressToolStripMenuItem.Name = "compressToolStripMenuItem";
+            this.compressToolStripMenuItem.Size = new System.Drawing.Size(88, 26);
+            this.compressToolStripMenuItem.Text = "Compress";
+            // 
+            // dataToolStripMenuItem
+            // 
+            this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dataToolStripMenuItem.Text = "Data";
+            // 
+            // fileSizeToolStripMenuItem
+            // 
+            this.fileSizeToolStripMenuItem.Name = "fileSizeToolStripMenuItem";
+            this.fileSizeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.fileSizeToolStripMenuItem.Text = "File Size";
+            // 
+            // formattingToolStripMenuItem
+            // 
+            this.formattingToolStripMenuItem.Name = "formattingToolStripMenuItem";
+            this.formattingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.formattingToolStripMenuItem.Text = "Formatting";
+            this.formattingToolStripMenuItem.Click += new System.EventHandler(this.formattingToolStripMenuItem_Click);
+            // 
+            // toJASONToolStripMenuItem
+            // 
+            this.toJASONToolStripMenuItem.Name = "toJASONToolStripMenuItem";
+            this.toJASONToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.toJASONToolStripMenuItem.Text = "To JASON";
             // 
             // Form1
             // 
@@ -94,20 +167,30 @@ namespace XML_Project
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txtArea);
-            this.Controls.Add(this.Open_btn);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.txtArea)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Open_btn;
         private FastColoredTextBoxNS.FastColoredTextBox txtArea;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem formatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem convertToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem compressToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileSizeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem formattingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toJASONToolStripMenuItem;
     }
 }
 

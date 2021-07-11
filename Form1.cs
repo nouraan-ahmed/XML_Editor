@@ -18,7 +18,7 @@ namespace XML_Project
             InitializeComponent();
         }
 
-        private void Open_btn_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
 
@@ -29,6 +29,47 @@ namespace XML_Project
                 read.Dispose();
                 txtArea.Language = FastColoredTextBoxNS.Language.XML;
 
+            }
+
+        }
+
+        private void formatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void formattingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            String txt_read = txtArea.Text;
+            string c;
+            int j = 0;
+            txtArea.Clear();
+            for (int i = 0; i < txt_read.Length; i++)
+            {
+                if ((txt_read[i] == '>') && (txt_read[i + 1] == ' '))
+                {
+                    goto label;
+                }
+            label: if ((txt_read[i] == '<') && (txt_read[i + 1] == '/'))
+                {
+                    j--;
+                    var str = new string(' ', 2 * j);
+                    txtArea.AppendText("\n" + str + txt_read[i]);
+                    continue;
+
+                }
+                else if (txt_read[i] == '<')
+                {
+                    var str = new string(' ', 2 * j);
+                    txtArea.AppendText("\n" + str + txt_read[i]);
+                    j++;
+                    continue;
+                }
+                else
+                {
+                    txtArea.Text += txt_read[i];
+                }
+                txtArea.Update();
             }
         }
     }
