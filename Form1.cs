@@ -13,6 +13,11 @@ namespace XML_Project
 {
     public partial class Form1 : Form
     {
+        string s;
+        string line;
+        string last_l;
+        string t;
+        string klh;
         public Form1()
         {
             InitializeComponent();
@@ -250,6 +255,87 @@ namespace XML_Project
         {
            
 
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            String txt_read = txtArea.Text;
+            List<string> array = new List<string>();
+            Stack<string> collector = new Stack<string>();
+            for (int i = 0; i < txt_read.Length; i++)
+            {
+
+                if ((txt_read[i] != '\n') && (txt_read[i] != ' '))
+                {
+                    s += txt_read[i];
+                }
+                else
+                {
+                    array.Add(s);
+                    s = "";
+                }
+                if (i == txt_read.Length - 1)
+                {
+                    array.Add(s);
+                    s = "";
+                }
+
+            }
+            for (int j = 0; j < array.Count; j++)
+            {
+                line = array[j];
+                if (j != 0)
+                {
+                    last_l = array[j - 1];
+                }
+                else
+                    last_l = array[0];
+
+                if (line[0] == '<')
+                {
+                    if (line[1] == '/')
+                    {
+                        if (line != ("</" + collector.Peek()))
+                        {
+                            array[j] = "</" + collector.Peek();
+                            collector.Pop();
+                        }
+                        else
+                            collector.Pop();
+                    }
+                    else if ((last_l[0] != '<') && (j != 0))
+                    {
+                        array.Insert(j, "</" + collector.Peek());
+                        collector.Pop();
+                    }
+                    else
+                    {
+                        string temp = line.Substring(1);
+                        collector.Push(temp);
+                    }
+                }
+            }
+            if (collector.Count == 0)
+            {
+                for (int l = 0; l < array.Count; l++)
+                {
+                    klh += array[l] + '\n';
+                }
+                txtArea.Text = klh;
+            }
+            else
+            {
+                while (collector.Count != 0)
+                {
+                    array.Add("</" + collector.Peek());
+                    collector.Pop();
+                }
+                for (int l = 0; l < array.Count; l++)
+                {
+                    klh += array[l] + '\n';
+                }
+                txtArea.Text = klh;
+            }
         }
     }
 }
