@@ -202,77 +202,7 @@ namespace XML_Project
                 }
                 //xml_stack.Push(xml_text.Substring(start_index, Len));
 
-                if (xml_text.Substring(start_index, Len).Contains('='))
-                {
-                    eq_index = xml_text.Substring(start_index, Len).IndexOf('=');
-                    eq_index += start_index;
-                    Len = eq_index - start_index;
-                    json_text += "\"@";
-                    json_text += xml_text.Substring(start_index, Len);
-                    json_text += "\": ";
-                    Len = end_index - eq_index;
-                    json_text += xml_text.Substring(eq_index + 1, Len);
-                    json_text += "\n";
-                    if (flag_end)
-                    {
-                        flag_end = false;
-                        json_text += "},\n\"";
-                        stop = true;
-                        index = xml_text.Substring(start_index).IndexOf('>');
-                        /* if (xml_text[index - 1] == '?')
-                         {
-                             start_index++;
-                         }*/
-                        start_index += index;
-
-                        Len = 0;
-                    }
-                    File.WriteAllText("XMLText.txt", json_text);
-                    if (xml_text[end_index + 1] == '?')
-                    {
-                        start_index = end_index + 3;
-                    }
-                    else
-                    {
-                        start_index = end_index + 2;
-                    }
-                }
-                else if (xml_text.Substring(start_index, Len).Contains('/') && !flag_txt)
-                {
-                    end_index = start_index + xml_text.Substring(start_index).IndexOf('>') - 1;
-                    Len = end_index - start_index + 1;
-                    json_text += xml_text.Substring(start_index, Len);
-                    json_text += "\":{\n";
-                    /*if (flag_txt)
-                    {
-                        flag_txt = false;
-                        json_text += "\"#text\"";
-                        json_text += ":{\"";
-                        json_text += txt;
-                    }*/
-                    // start_index = end_index + 2;
-                    //end_index = start_index+ xml_text.Substring(start_index).IndexOf('<') - 1;
-                    char f = xml_text[end_index];
-                    char lll = xml_text[start_index];
-                    Len = end_index - start_index + 1;
-                    json_text += xml_text.Substring(start_index, Len);
-                    json_text += "\"";
-                    json_text += "\n";
-
-                    if (xml_text[end_index + 1] == '<' && xml_text[end_index + 2] == '/')
-                    {
-                        end_index = start_index + xml_text.Substring(start_index).IndexOf('>');
-                        start_index = end_index + 1;
-                        flag_end = true;
-                    }
-                    if (flag_end && !flag_txt)
-                    {
-                        flag_end = false;
-                        json_text += "},\n\"";
-
-                    }
-
-                }
+                
                 else if (Len != 0 && !flag_txt)
                 {
                     json_text += xml_text.Substring(start_index, Len);
@@ -290,6 +220,29 @@ namespace XML_Project
                 File.WriteAllText("XMLText.txt", json_text);
             }
             json_text += "\n}";
+        }
+
+        private void fileSizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.Title = "Save file as..";
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter txtoutput = new StreamWriter(savefile.FileName);
+                txtoutput.Write(txtArea.Text);
+                txtoutput.Close();
+            }
+        }
+        
+        private void dataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+
         }
     }
 }
