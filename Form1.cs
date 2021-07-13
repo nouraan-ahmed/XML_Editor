@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -79,6 +80,7 @@ namespace XML_Project
 
         private void ToJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             string xml_text = System.IO.File.ReadAllText(@"../../data.xml");
             string json_text = "{\n";
             Queue xml_queue = new Queue();
@@ -112,10 +114,8 @@ namespace XML_Project
             string front_element = "";
             string indentation = "";
             string prevtag = "";
-            string attr = "";
 
-
-
+            //this for loop's function is to add anything between "<" & ">" to a queue called xml_queue 
             for (int i = start_index; end_index + 2 < xml_text.Length - 1; i++)
             {
                 i = start_index;
@@ -136,7 +136,7 @@ namespace XML_Project
                     xml_queue.Enqueue("$txt" + txt_element);
                 }
             }
-
+            //this do all the work :)
             for (int j = 0; xml_queue.Count != 0; j++)
             {
                 cnt = 0;
@@ -144,29 +144,25 @@ namespace XML_Project
                 end_index = 1;
                 ind_flag = false;
                 txt = false;
+                //get each element in the queue then dequeue it
                 front_element = xml_queue.Peek().ToString();
                 xml_queue.Dequeue();
+                // after each iteration it adds the json_text into file 
                 File.WriteAllText("XMLText.txt", json_text);
-                attr = "";
                 for (int k = end_index; end_index < front_element.Length - 1; k++)
                 {
                     File.WriteAllText("XMLText.txt", json_text);
                     if (front_element.Substring(0, 1) == "$" && front_element.Substring(0, 4) == "$txt")
                     {
-
+                        // any tag with no attribute
                         if (noattr)
                         {
-
                             inddex = index;
                             olddind = inddex;
                             txt = true;
                             if (tag_flag)
                             {
                                 dot = json_text.Substring(olddind).IndexOf(':') + olddind;
-                                //string ttt = json_text.Substring(dot);
-                                //olddind += ttt.IndexOf('{');
-                                //string dttt = json_text.Substring(olddind);
-
                                 json_text = json_text.Remove(dot + 1, 2);
 
                             }
@@ -175,14 +171,11 @@ namespace XML_Project
                             {
                                 if (json_text[json_text.Length - 1] == '\n' && json_text[json_text.Length - 2] == '{' && tag_flag)
                                 {
-                                    string hhh = json_text.Substring(json_text.Length - 200);
                                     json_text += json_text.Substring(json_text.Length - 4).Replace("{\n", " ");
                                     json_text += indentation;
                                 }
                                 else
                                 {
-                                    string hhdh = json_text.Substring(json_text.Length - 2);
-
                                     json_text += indentation + "\"#text\":";
                                 }
                             }
@@ -191,11 +184,6 @@ namespace XML_Project
                                 json_text += indentation;
                             }
 
-                            //json_text.Substring(dot).Replace("{", "")
-                            //json_text.Substring(dot).Replace("\n", "")
-                            //json_text =json_text.Replace("],{", "");
-                            //json_text = json_text.Replace("],\t{", "");
-                            //json_text.Substring(dot).Replace("\n","");
                             inddex = json_text.Length - 1;
 
                             json_text += "\"" + front_element.Substring(4) + "\"";
@@ -206,21 +194,19 @@ namespace XML_Project
                             break;
                         }
 
-                        if (attr != "text")
+
+                        if (ind_flag || (json_text.Substring(json_text.Length - 1) == "\t"))
                         {
-                            if (ind_flag || (json_text.Substring(json_text.Length - 1) == "\t"))
-                            {
 
-                                json_text += "\"#text\":";
+                            json_text += "\"#text\":";
 
-                                ind_flag = false;
-                            }
-                            else
-                            {
-                                json_text += indentation + "\"#text\":";
-                            }
+                            ind_flag = false;
                         }
-                        attr = "";
+                        else
+                        {
+                            json_text += indentation + "\"#text\":";
+                        }
+
                         txt_element = front_element.Insert(4, "\"");
                         txt_element = txt_element.Insert(front_element.Length + 1, "\"");
                         json_text += txt_element.Substring(4);
@@ -242,7 +228,7 @@ namespace XML_Project
                             json_text += "]\n";
 
                         json_text += "\n" + indentation + "},\n" + indentation;
-                        if (index != 0 && tag_flag && oldind + 1 < json_text.Length)
+                        if (index != 0 && tag_flag)
                         {
 
 
@@ -250,11 +236,8 @@ namespace XML_Project
                                 json_text = json_text.Remove(oldind, 1);
 
                             json_text = json_text.Remove(index, 1);
-                            //char dd = json_text[oldind + 1];
-                            //char dxd = json_text[oldind];
-                            //string dsd = json_text.Substring(oldind-6 , indentation.Length + 9);
                             if (json_text.Substring(oldind, 1) == ",")
-                                json_text = json_text.Remove(oldind);
+                                json_text = json_text.Remove(oldind, 2 + indentation.Length);
                         }
 
                         index = json_text.Length;
@@ -265,33 +248,11 @@ namespace XML_Project
                             endinddex = index;
                             endolddind = olddind;
                             endolddind = inddex;
-                            string tftt = json_text.Substring(endolddind);
-                            int ind = tftt.Substring(3).IndexOf('"') + endolddind + 3;
-
-
-                            // string tfvftt = json_text.Substring(ind+4);
-                            //json_text.Substring(ind).Replace("\"{", "\"");
+                            int ind = json_text.Substring(endolddind).Substring(3).IndexOf('"') + endolddind + 3;
                             json_text = json_text.Remove(ind + 4);
                             json_text += indentation;
-
-                            endolddind += tftt.IndexOf('}');
-                            //string ttcdt = json_text.Substring(endolddind);
-
-                            //json_text = json_text.Remove(endolddind,1);
-                            //json_text.Substring(dot).Replace("{", "");
-                            //string dddd = json_text.Substring(endinddex);
-                            // string ef = json_text.Substring(olddind);
-                            // string rr = json_text.Substring(inddex);
-
-                            //json_text +=json_text.Substring(endolddind).Replace("\n", "");
-                            //json_text += json_text.Substring(olddind).Replace("},\n", "");
-                            //json_text += json_text.Substring(olddind).Replace(",", "");
-                            //json_text += json_text.Substring(olddind).Replace("{", "");
-                            //json_text =json_text.Replace("],{", "");
-                            //json_text = json_text.Replace("],\t{", "");
-
+                            endolddind += json_text.Substring(endolddind).IndexOf('}');
                             endinddex = json_text.Length - 1;
-                            //json_text += "\"" + front_element.Substring(4) + "\"";
 
                             break;
                         }
@@ -299,8 +260,15 @@ namespace XML_Project
                     }
                     else
                     {
+                        // the tag element i.e: the first part between "<" ">" splited by space
                         if (cnt == 0)
                         {
+                            //if element start with "?" this will not be add to json 
+
+                            if (front_element.Substring(0, 1).Contains("?"))
+                            {
+                                break;
+                            }
                             noattr = true;
                             start_index = 0;
                             if (json_text[json_text.Length - 1] != '\n' || json_text[json_text.Length - 1] != '\t')
@@ -322,7 +290,6 @@ namespace XML_Project
                                 txt_element = txt_element.Insert(0, "\"");
                                 json_text += txt_element;
                                 tag_flag = false;
-                                attr = "";
                                 brack_index = json_text.Length;
                             }
                             else
@@ -343,6 +310,7 @@ namespace XML_Project
 
                             cnt++;
                         }
+                        // all attributes are splitted here
                         else
                         {
                             noattr = false;
@@ -356,6 +324,7 @@ namespace XML_Project
                             if (Len == 0) break;
                             end_index = start_index + Len - 2;
                             txt_element = front_element.Substring(start_index, Len);
+                            //the attribute is splitted into two parts one for the name and contain "=" and other for the value
                             if (txt_element.Contains('='))
                             {
 
@@ -367,18 +336,27 @@ namespace XML_Project
                             }
 
                             json_text += txt_element;
+                            //only add this if it's the end of the attribute
                             if (cnt % 2 == 0)
                             {
                                 json_text += ",\n";
                             }
                             cnt++;
+
                         }
                     }
 
                 }
-                if (xml_queue.Count == 1) json_text += "}";
+                //closing brackets at the end
+                if (xml_queue.Count == 1)
+                {
+                    if (json_text[json_text.Length - indentation.Length - 3] == ']')
+                    {
+                        json_text = json_text.Remove(json_text.Length - indentation.Length - 3);
+                    }
+                    json_text += "}";
+                }
             }
-
 
         }
 
