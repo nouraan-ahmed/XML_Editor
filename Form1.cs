@@ -14,10 +14,9 @@ namespace XML_Project
     public partial class Form1 : Form
     {
         string s;
-        string line;
-        string last_l;
-        string t;
+        string sh;
         string klh;
+        Boolean flag = true;
         public Form1()
         {
             InitializeComponent();
@@ -417,81 +416,99 @@ namespace XML_Project
         {
             String txt_read = txtArea.Text;
             List<string> array = new List<string>();
+            List<string> arr = new List<string>();
             Stack<string> collector = new Stack<string>();
             for (int i = 0; i < txt_read.Length; i++)
             {
-
-                if ((txt_read[i] != '\n') && (txt_read[i] != ' '))
+                if ((txt_read[i] == '\r') || (txt_read[i] == '\n'))
+                {
+                    continue;
+                }
+                if (txt_read[i] != '>')
                 {
                     s += txt_read[i];
-                }
-                else
-                {
-                    array.Add(s);
-                    s = "";
-                }
-                if (i == txt_read.Length - 1)
-                {
-                    array.Add(s);
-                    s = "";
-                }
-
-            }
-            for (int j = 0; j < array.Count; j++)
-            {
-                line = array[j];
-                if (j != 0)
-                {
-                    last_l = array[j - 1];
-                }
-                else
-                    last_l = array[0];
-
-                if (line[0] == '<')
-                {
-                    if (line[1] == '/')
+                    if ((s[0] != '<') && (txt_read[i] == '<'))
                     {
-                        if (line != ("</" + collector.Peek()))
+                        s = s.Substring(0, s.Length - 1);
+                        array.Add(s);
+                        s = "";
+                        if (i != txt_read.Length - 1)
                         {
-                            array[j] = "</" + collector.Peek();
-                            collector.Pop();
+                            if (txt_read[i + 1] != '/')
+                            {
+                                array.Add("</" + collector.Peek());
+                                collector.Pop();
+                            }
+                        }
+                        i--;
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (txt_read[i] == '>')
+                    {
+                        if ((s[1] == '!') || (s[1] == '?'))
+                        {
+                            array.Add(s + '>');
+                        }
+                        else if (s[1] != '/')
+                        {
+                            array.Add(s + '>');
+                            for (int o = 0; o < s.Length; o++)
+                            {
+                                sh += s[o];
+                                if ((s[0] == '<') && (s[o] == ' ') && (s[1] != '/'))
+                                {
+                                    sh = sh.Substring(0, sh.Length - 1);
+                                    arr.Add(sh + '>');
+                                    string temp = arr[arr.Count - 1].Substring(1);
+                                    collector.Push(temp);
+                                    sh = "";
+                                    flag = false;
+                                    break;
+                                }
+                            }
+                            if (flag == true)
+                            {
+                                arr.Add(sh + '>');
+                                string temp = arr[arr.Count - 1].Substring(1);
+                                collector.Push(temp);
+                            }
+                            flag = true;
                         }
                         else
-                            collector.Pop();
+                        {
+                            if (s + '>' == ("</" + collector.Peek()))
+                            {
+                                array.Add(s + '>');
+                                collector.Pop();
+                            }
+                            else
+                            {
+                                s = ("</" + collector.Peek());
+                                array.Add(s);
+                                collector.Pop();
+                            }
+                        }
                     }
-                    else if ((last_l[0] != '<') && (j != 0))
-                    {
-                        array.Insert(j, "</" + collector.Peek());
-                        collector.Pop();
-                    }
-                    else
-                    {
-                        string temp = line.Substring(1);
-                        collector.Push(temp);
-                    }
+                    s = "";
+                    sh = "";
                 }
             }
-            if (collector.Count == 0)
-            {
-                for (int l = 0; l < array.Count; l++)
-                {
-                    klh += array[l] + '\n';
-                }
-                txtArea.Text = klh;
-            }
-            else
+            if (collector.Count != 0)
             {
                 while (collector.Count != 0)
                 {
                     array.Add("</" + collector.Peek());
                     collector.Pop();
                 }
-                for (int l = 0; l < array.Count; l++)
-                {
-                    klh += array[l] + '\n';
-                }
-                txtArea.Text = klh;
             }
+            for (int l = 0; l < array.Count; l++)
+            {
+                klh += array[l] + '\n';
+            }
+            txtArea.Text = klh;
         }
     }
 }
