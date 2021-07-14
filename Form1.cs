@@ -375,7 +375,7 @@ namespace XML_Project
             txt_read = Regex.Replace(txt_read, Replace1, "><");
             txt_read = txt_read.Replace(Environment.NewLine, string.Empty);
 
-            txtArea.Text= txt_read;
+            output_txt.Text= txt_read;
         
         }
 
