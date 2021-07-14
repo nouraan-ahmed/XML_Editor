@@ -97,8 +97,8 @@ namespace XML_Project
 
         private void ToJSONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            string xml_text = System.IO.File.ReadAllText(@"../../data.xml");
+            string xml_text = txtArea.Text;
+            //string xml_text = System.IO.File.ReadAllText(@"../../data.xml");
             string json_text = "{\n";
             Queue xml_queue = new Queue();
 
@@ -133,6 +133,7 @@ namespace XML_Project
             string prevtag = "";
 
             //this for loop's function is to add anything between "<" & ">" to a queue called xml_queue 
+            //O(n)
             for (int i = start_index; end_index + 2 < xml_text.Length - 1; i++)
             {
                 i = start_index;
@@ -165,10 +166,8 @@ namespace XML_Project
                 front_element = xml_queue.Peek().ToString();
                 xml_queue.Dequeue();
                 // after each iteration it adds the json_text into file 
-                File.WriteAllText("XMLText.txt", json_text);
                 for (int k = end_index; end_index < front_element.Length - 1; k++)
                 {
-                    File.WriteAllText("XMLText.txt", json_text);
                     if (front_element.Substring(0, 1) == "$" && front_element.Substring(0, 4) == "$txt")
                     {
                         // any tag with no attribute
@@ -216,7 +215,6 @@ namespace XML_Project
                         {
 
                             json_text += "\"#text\":";
-
                             ind_flag = false;
                         }
                         else
@@ -227,7 +225,6 @@ namespace XML_Project
                         txt_element = front_element.Insert(4, "\"");
                         txt_element = txt_element.Insert(front_element.Length + 1, "\"");
                         json_text += txt_element.Substring(4);
-                        File.WriteAllText("XMLText.txt", json_text);
                         break;
                     }
                     else if (front_element.Substring(0, 3) == "!--")
@@ -247,8 +244,6 @@ namespace XML_Project
                         json_text += "\n" + indentation + "},\n" + indentation;
                         if (index != 0 && tag_flag)
                         {
-
-
                             if (json_text[oldind + 1] == ']')
                                 json_text = json_text.Remove(oldind, 1);
 
@@ -270,7 +265,6 @@ namespace XML_Project
                             json_text += indentation;
                             endolddind += json_text.Substring(endolddind).IndexOf('}');
                             endinddex = json_text.Length - 1;
-
                             break;
                         }
                         break;
@@ -374,7 +368,7 @@ namespace XML_Project
                     json_text += "}";
                 }
             }
-
+            output_txt.Text = json_text;
         }
 
         private void fileSizeToolStripMenuItem_Click(object sender, EventArgs e)
