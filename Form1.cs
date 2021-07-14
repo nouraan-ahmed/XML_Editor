@@ -48,8 +48,8 @@ namespace XML_Project
         {
             String txt_read = txtArea.Text;
             String c = null;
-            String o = null;
-            int j = 1;
+
+            int j = 0;
 
             for (int i = 0; i < txt_read.Length; i++)
             {
@@ -68,8 +68,10 @@ namespace XML_Project
                 }
                 else if (txt_read[i] == '>')
                 {
+                   
                     if (i == txt_read.Length - 1)
                     {
+                        c += txt_read[i];
                         break;
                     }
                     else if ((txt_read[i + 1] == '<') && (txt_read[i + 2] == '/'))
@@ -81,6 +83,17 @@ namespace XML_Project
                         continue;
                         j--;
                     }
+                    else if ((txt_read[i + 1] == '<'))
+                    {
+                        c += txt_read[i];
+                        continue;
+                    }
+                    else if (txt_read[i + 1] == '\r')
+                    {
+                        c += txt_read[i];
+                        continue;
+                    }
+                    
                 }
 
                 else
