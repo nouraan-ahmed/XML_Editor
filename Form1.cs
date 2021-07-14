@@ -398,9 +398,12 @@ namespace XML_Project
             Stack<string> collector = new Stack<string>();
             for (int i = 0; i < txt_read.Length; i++)
             {
-                if ((txt_read[i] == '\r') || (txt_read[i] == '\n'))
+                if (i != 0)
                 {
-                    continue;
+                    if ((txt_read[i] == '\r') || (txt_read[i] == '\n') || ((txt_read[i - 1] == '\n') && (txt_read[i] == ' ')) || ((txt_read[i - 1] == ' ') && (txt_read[i] == ' ')))
+                    {
+                        continue;
+                    }
                 }
                 if (txt_read[i] != '>')
                 {
@@ -409,7 +412,6 @@ namespace XML_Project
                     {
                         s = s.Substring(0, s.Length - 1);
                         array.Add(s);
-                        s = "";
                         if (i != txt_read.Length - 1)
                         {
                             if (txt_read[i + 1] != '/')
@@ -418,6 +420,7 @@ namespace XML_Project
                                 collector.Pop();
                             }
                         }
+                        s = "";
                         i--;
                         continue;
                     }
@@ -436,7 +439,7 @@ namespace XML_Project
                             for (int o = 0; o < s.Length; o++)
                             {
                                 sh += s[o];
-                                if ((s[0] == '<') && (s[o] == ' ') && (s[1] != '/'))
+                                if ((s[0] == '<') && (s[o] == ' ') && (s[1] != '/') && (s[s.Length - 1] != '/'))
                                 {
                                     sh = sh.Substring(0, sh.Length - 1);
                                     arr.Add(sh + '>');
@@ -447,7 +450,7 @@ namespace XML_Project
                                     break;
                                 }
                             }
-                            if (flag == true)
+                            if ((flag == true) && (s[s.Length - 1] != '/'))
                             {
                                 arr.Add(sh + '>');
                                 string temp = arr[arr.Count - 1].Substring(1);
