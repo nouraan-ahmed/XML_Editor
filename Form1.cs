@@ -536,7 +536,7 @@ namespace XML_Project
             {
                 klh += array[l] + '\n';
             }
-            txtArea.Text = klh;
+            output_txt.Text = klh;
         }
 
         private void convertToolStripMenuItem_Click(object sender, EventArgs e)
