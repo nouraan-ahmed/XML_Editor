@@ -48,23 +48,15 @@ namespace XML_Project
         {
             String txt_read = txtArea.Text;
             String c = null;
-            String o = null;
-            int j = 1;
-            txtArea.Clear();
-            
+            int j = 0;
             for (int i = 0; i < txt_read.Length; i++)
             {
+                
                 if ((txt_read[i] == '<') && (txt_read[i + 1] != '/'))
                 {
                     j++;
                     var str = new string(' ', 2 * j);
                     c += "\n" + str + txt_read[i];
-                    continue;
-                }
-                else if (txt_read[i] == '<' && (txt_read[i + 1] == '/'))
-                {
-                    c += txt_read[i];
-                    j--;
                     continue;
                 }
                 else if ((txt_read[i] == '>') && (txt_read[i + 1] == '<') && (txt_read[i + 2] == '/'))
@@ -76,16 +68,20 @@ namespace XML_Project
                     continue;
                     j--;
                 }
-
+                else if (txt_read[i] == '<' && (txt_read[i + 1] == '/'))
+                {
+                    c += txt_read[i];
+                    j--;
+                    continue;
+                }
                 else
                 {
 
                     c += txt_read[i];
                 }
-               
+
             }
-            txtArea.Clear();
-            txtArea.Text = c;
+            output_txt.Text = c;
             txtArea.Update();
         }
 
@@ -537,6 +533,11 @@ namespace XML_Project
                 klh += array[l] + '\n';
             }
             txtArea.Text = klh;
+        }
+
+        private void convertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

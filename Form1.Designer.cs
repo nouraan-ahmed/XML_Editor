@@ -45,8 +45,10 @@ namespace XML_Project
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.txtArea = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.output_txt = new FastColoredTextBoxNS.FastColoredTextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtArea)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.output_txt)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -60,8 +62,8 @@ namespace XML_Project
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(600, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(990, 28);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,20 +73,20 @@ namespace XML_Project
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -93,14 +95,14 @@ namespace XML_Project
             this.formatToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.formattingToolStripMenuItem});
             this.formatToolStripMenuItem.Name = "formatToolStripMenuItem";
-            this.formatToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.formatToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.formatToolStripMenuItem.Text = "Format";
             this.formatToolStripMenuItem.Click += new System.EventHandler(this.formatToolStripMenuItem_Click);
             // 
             // formattingToolStripMenuItem
             // 
             this.formattingToolStripMenuItem.Name = "formattingToolStripMenuItem";
-            this.formattingToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.formattingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.formattingToolStripMenuItem.Text = "Formatting";
             this.formattingToolStripMenuItem.Click += new System.EventHandler(this.formattingToolStripMenuItem_Click);
             // 
@@ -109,13 +111,14 @@ namespace XML_Project
             this.convertToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToJSONToolStripMenuItem});
             this.convertToolStripMenuItem.Name = "convertToolStripMenuItem";
-            this.convertToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.convertToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.convertToolStripMenuItem.Text = "Convert";
+            this.convertToolStripMenuItem.Click += new System.EventHandler(this.convertToolStripMenuItem_Click);
             // 
             // ToJSONToolStripMenuItem
             // 
             this.ToJSONToolStripMenuItem.Name = "ToJSONToolStripMenuItem";
-            this.ToJSONToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ToJSONToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.ToJSONToolStripMenuItem.Text = "To JSON";
             this.ToJSONToolStripMenuItem.Click += new System.EventHandler(this.ToJSONToolStripMenuItem_Click);
             // 
@@ -125,20 +128,20 @@ namespace XML_Project
             this.dataToolStripMenuItem,
             this.fileSizeToolStripMenuItem});
             this.compressToolStripMenuItem.Name = "compressToolStripMenuItem";
-            this.compressToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.compressToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.compressToolStripMenuItem.Text = "Compress";
             // 
             // dataToolStripMenuItem
             // 
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-            this.dataToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.dataToolStripMenuItem.Text = "Data";
             this.dataToolStripMenuItem.Click += new System.EventHandler(this.dataToolStripMenuItem_Click);
             // 
             // fileSizeToolStripMenuItem
             // 
             this.fileSizeToolStripMenuItem.Name = "fileSizeToolStripMenuItem";
-            this.fileSizeToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.fileSizeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.fileSizeToolStripMenuItem.Text = "File Size";
             this.fileSizeToolStripMenuItem.Click += new System.EventHandler(this.fileSizeToolStripMenuItem_Click);
             // 
@@ -147,18 +150,21 @@ namespace XML_Project
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(64, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(79, 24);
             this.toolStripMenuItem1.Text = "Compile";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(188, 26);
             this.toolStripMenuItem2.Text = "Error_handling";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // txtArea
             // 
+            this.txtArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtArea.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -170,38 +176,74 @@ namespace XML_Project
         '\"',
         '\'',
         '\''};
-            this.txtArea.AutoScrollMinSize = new System.Drawing.Size(179, 14);
+            this.txtArea.AutoScrollMinSize = new System.Drawing.Size(221, 18);
             this.txtArea.BackBrush = null;
-            this.txtArea.CharHeight = 14;
-            this.txtArea.CharWidth = 8;
+            this.txtArea.CharHeight = 18;
+            this.txtArea.CharWidth = 10;
             this.txtArea.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtArea.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.txtArea.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.txtArea.IsReplaceMode = false;
-            this.txtArea.Location = new System.Drawing.Point(12, 27);
+            this.txtArea.Location = new System.Drawing.Point(16, 33);
+            this.txtArea.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtArea.Name = "txtArea";
             this.txtArea.Paddings = new System.Windows.Forms.Padding(0);
             this.txtArea.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.txtArea.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtArea.ServiceColors")));
-            this.txtArea.Size = new System.Drawing.Size(588, 338);
+            this.txtArea.Size = new System.Drawing.Size(499, 404);
             this.txtArea.TabIndex = 8;
             this.txtArea.Text = "fastColoredTextBox1";
             this.txtArea.Zoom = 100;
             // 
+            // output_txt
+            // 
+            this.output_txt.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.output_txt.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.output_txt.AutoScrollMinSize = new System.Drawing.Size(221, 18);
+            this.output_txt.BackBrush = null;
+            this.output_txt.CharHeight = 18;
+            this.output_txt.CharWidth = 10;
+            this.output_txt.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.output_txt.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.output_txt.Font = new System.Drawing.Font("Courier New", 9.75F);
+            this.output_txt.IsReplaceMode = false;
+            this.output_txt.Location = new System.Drawing.Point(522, 33);
+            this.output_txt.Name = "output_txt";
+            this.output_txt.Paddings = new System.Windows.Forms.Padding(0);
+            this.output_txt.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.output_txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("output_txt.ServiceColors")));
+            this.output_txt.Size = new System.Drawing.Size(456, 404);
+            this.output_txt.TabIndex = 9;
+            this.output_txt.Text = "fastColoredTextBox1";
+            this.output_txt.Zoom = 100;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(990, 450);
+            this.Controls.Add(this.output_txt);
             this.Controls.Add(this.txtArea);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtArea)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.output_txt)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,6 +264,7 @@ namespace XML_Project
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private FastColoredTextBoxNS.FastColoredTextBox txtArea;
+        private FastColoredTextBoxNS.FastColoredTextBox output_txt;
     }
 }
 
