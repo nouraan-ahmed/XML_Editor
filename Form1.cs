@@ -50,7 +50,7 @@ namespace XML_Project
             String c = null;
             String o = null;
             int j = 1;
-            
+
             for (int i = 0; i < txt_read.Length; i++)
             {
                 if ((txt_read[i] == '<') && (txt_read[i + 1] != '/'))
@@ -66,14 +66,21 @@ namespace XML_Project
                     j--;
                     continue;
                 }
-                else if ((txt_read[i] == '>') && (txt_read[i + 1] == '<') && (txt_read[i + 2] == '/'))
+                else if (txt_read[i] == '>')
                 {
+                    if (i == txt_read.Length - 1)
+                    {
+                        break;
+                    }
+                    else if ((txt_read[i + 1] == '<') && (txt_read[i + 2] == '/'))
+                    {
 
-                    c += txt_read[i];
-                    var str = new string(' ', 2 * j);
-                    c += "\n" + str;
-                    continue;
-                    j--;
+                        c += txt_read[i];
+                        var str = new string(' ', 2 * j);
+                        c += "\n" + str;
+                        continue;
+                        j--;
+                    }
                 }
 
                 else
@@ -83,11 +90,8 @@ namespace XML_Project
                 }
 
             }
-           
             output_txt.Text = c;
-            output_txt.Update();
-
-
+            txtArea.Update();
 
         }
 
