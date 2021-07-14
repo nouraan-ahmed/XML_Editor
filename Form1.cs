@@ -48,15 +48,22 @@ namespace XML_Project
         {
             String txt_read = txtArea.Text;
             String c = null;
-            int j = 0;
+            String o = null;
+            int j = 1;
+            
             for (int i = 0; i < txt_read.Length; i++)
             {
-                
                 if ((txt_read[i] == '<') && (txt_read[i + 1] != '/'))
                 {
                     j++;
                     var str = new string(' ', 2 * j);
                     c += "\n" + str + txt_read[i];
+                    continue;
+                }
+                else if (txt_read[i] == '<' && (txt_read[i + 1] == '/'))
+                {
+                    c += txt_read[i];
+                    j--;
                     continue;
                 }
                 else if ((txt_read[i] == '>') && (txt_read[i + 1] == '<') && (txt_read[i + 2] == '/'))
@@ -68,12 +75,7 @@ namespace XML_Project
                     continue;
                     j--;
                 }
-                else if (txt_read[i] == '<' && (txt_read[i + 1] == '/'))
-                {
-                    c += txt_read[i];
-                    j--;
-                    continue;
-                }
+
                 else
                 {
 
@@ -81,8 +83,12 @@ namespace XML_Project
                 }
 
             }
+           
             output_txt.Text = c;
-            txtArea.Update();
+            output_txt.Update();
+
+
+
         }
 
         private void ToJSONToolStripMenuItem_Click(object sender, EventArgs e)
@@ -386,7 +392,7 @@ namespace XML_Project
             if (savefile.ShowDialog() == DialogResult.OK)
             {
                 StreamWriter txtoutput = new StreamWriter(savefile.FileName);
-                txtoutput.Write(txtArea.Text);
+                txtoutput.Write(output_txt.Text);
                 txtoutput.Close();
             }
         }
@@ -536,6 +542,11 @@ namespace XML_Project
         }
 
         private void convertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtArea_Load(object sender, EventArgs e)
         {
 
         }
