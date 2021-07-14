@@ -47,30 +47,32 @@ namespace XML_Project
         private void formattingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String txt_read = txtArea.Text;
-            string c;
+            String c = null;
+            String o = null;
             int j = 1;
             txtArea.Clear();
+            
             for (int i = 0; i < txt_read.Length; i++)
             {
                 if ((txt_read[i] == '<') && (txt_read[i + 1] != '/'))
                 {
                     j++;
                     var str = new string(' ', 2 * j);
-                    txtArea.AppendText("\n" + str + txt_read[i]);
+                    c += "\n" + str + txt_read[i];
                     continue;
                 }
                 else if (txt_read[i] == '<' && (txt_read[i + 1] == '/'))
                 {
-                    txtArea.Text += txt_read[i];
+                    c += txt_read[i];
                     j--;
                     continue;
                 }
                 else if ((txt_read[i] == '>') && (txt_read[i + 1] == '<') && (txt_read[i + 2] == '/'))
                 {
 
-                    txtArea.Text += txt_read[i];
+                    c += txt_read[i];
                     var str = new string(' ', 2 * j);
-                    txtArea.AppendText("\n" + str);
+                    c += "\n" + str;
                     continue;
                     j--;
                 }
@@ -78,10 +80,13 @@ namespace XML_Project
                 else
                 {
 
-                    txtArea.Text += txt_read[i];
+                    c += txt_read[i];
                 }
-                txtArea.Update();
+               
             }
+            txtArea.Clear();
+            txtArea.Text = c;
+            txtArea.Update();
         }
 
         private void ToJSONToolStripMenuItem_Click(object sender, EventArgs e)
