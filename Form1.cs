@@ -389,6 +389,34 @@ namespace XML_Project
                 txtoutput.Close();
             }
         }
+      public static List<int> Compress(string to_compress)
+        {
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            for (int i = 0; i < 256; i++)
+            {
+                dic.Add(((char)i).ToString(), i);
+            }
+            string st_1 = string.Empty;
+            List<int> comp = new List<int>();
+
+            foreach (char st_2 in to_compress)
+            {
+                string st_3 = st_1 + st_2;
+                if (dic.ContainsKey(st_3))
+                {
+                    st_1 = st_3;
+                }
+                else
+                {
+                    comp.Add(dic[st_1]);
+                    dic.Add(st_3, dic.Count);
+                    st_1 = st_2.ToString();
+                }
+            }
+            if (!string.IsNullOrEmpty(st_1))
+                comp.Add(dic[st_1]);
+                 return comp;
+        }
         
         private void dataToolStripMenuItem_Click(object sender, EventArgs e)
         {
