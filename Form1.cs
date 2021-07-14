@@ -420,7 +420,15 @@ namespace XML_Project
         
         private void dataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            List<int> compressed = Compress(txtArea.Text);
+            SaveFileDialog savefile = new SaveFileDialog();
+            savefile.Title = "Save file as..";
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter txtoutput = new StreamWriter(savefile.FileName);
+                txtoutput.Write(compressed);
+                txtoutput.Close();
+            }
 
         }
 
