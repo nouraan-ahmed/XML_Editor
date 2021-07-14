@@ -363,12 +363,12 @@ namespace XML_Project
         private void fileSizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String txt_read = txtArea.Text;
-            for (int i = 0; i < txt_read.Length; i++)
-            {
-                if (txt_read[i] == ' ')
-               txtArea.Text = txtArea.Text.Replace(" ", String.Empty);
-                txtArea.Text = txtArea.Text.Replace("\n", "").Replace("\r", "");
-            }
+            string Replace1 = "(?!>\\s+</)(>\\s+<)";
+            txt_read = txt_read.Replace("\r", "").Replace("\n", "").Replace("\t", "");
+            txt_read = Regex.Replace(txt_read, Replace1, "><");
+            txt_read = txt_read.Replace(Environment.NewLine, string.Empty);
+
+            txtArea.Text= txt_read;
         
         }
 
