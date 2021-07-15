@@ -198,7 +198,7 @@ namespace XML_Project
         '\"',
         '\'',
         '\''};
-            this.txtArea.AutoScrollMinSize = new System.Drawing.Size(221, 18);
+            this.txtArea.AutoScrollMinSize = new System.Drawing.Size(291, 18);
             this.txtArea.BackBrush = null;
             this.txtArea.CharHeight = 18;
             this.txtArea.CharWidth = 10;
@@ -213,7 +213,7 @@ namespace XML_Project
             this.txtArea.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("txtArea.ServiceColors")));
             this.txtArea.Size = new System.Drawing.Size(378, 416);
             this.txtArea.TabIndex = 0;
-            this.txtArea.Text = "fastColoredTextBox1";
+            this.txtArea.Text = "<.......INPUT_FILE.......>";
             this.txtArea.Zoom = 100;
             // 
             // output_txt
@@ -232,7 +232,7 @@ namespace XML_Project
         '\"',
         '\'',
         '\''};
-            this.output_txt.AutoScrollMinSize = new System.Drawing.Size(221, 18);
+            this.output_txt.AutoScrollMinSize = new System.Drawing.Size(301, 18);
             this.output_txt.BackBrush = null;
             this.output_txt.CharHeight = 18;
             this.output_txt.CharWidth = 10;
@@ -247,7 +247,7 @@ namespace XML_Project
             this.output_txt.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("output_txt.ServiceColors")));
             this.output_txt.Size = new System.Drawing.Size(596, 416);
             this.output_txt.TabIndex = 0;
-            this.output_txt.Text = "fastColoredTextBox2";
+            this.output_txt.Text = "<.......OUTPUT_FILE.......>";
             this.output_txt.Zoom = 100;
             // 
             // Form1

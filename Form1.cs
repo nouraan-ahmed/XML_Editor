@@ -435,18 +435,39 @@ namespace XML_Project
                 comp.Add(dic[st_1]);
                  return comp;
         }
-        
+
+      
         private void dataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<int> compressed = Compress(txtArea.Text);
-            SaveFileDialog savefile = new SaveFileDialog();
-            savefile.Title = "Save file as..";
-            if (savefile.ShowDialog() == DialogResult.OK)
+            DialogResult dr = MessageBox.Show("If want compress Input File: press Yes\n If want compress Output File: press No","Purchase Software", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (dr == DialogResult.Yes)
             {
-                StreamWriter txtoutput = new StreamWriter(savefile.FileName);
-                txtoutput.Write(compressed);
-                txtoutput.Close();
+                List<int> compressed = Compress(txtArea.Text);
+                SaveFileDialog savefile = new SaveFileDialog();
+                savefile.Title = "Save file as..";
+                if (savefile.ShowDialog() == DialogResult.OK)
+                {
+                    StreamWriter txtoutput = new StreamWriter(savefile.FileName);
+                    txtoutput.Write(compressed);
+                    txtoutput.Close();
+                }
+               
+                
             }
+            else
+            {
+                List<int> compressed = Compress(output_txt.Text);
+                SaveFileDialog savefile = new SaveFileDialog();
+                savefile.Title = "Save file as..";
+                if (savefile.ShowDialog() == DialogResult.OK)
+                {
+                    StreamWriter txtoutput = new StreamWriter(savefile.FileName);
+                    txtoutput.Write(compressed);
+                    txtoutput.Close();
+                }
+                
+            }
+            
 
         }
 
@@ -561,5 +582,7 @@ namespace XML_Project
         {
 
         }
+        
+       
     }
 }
