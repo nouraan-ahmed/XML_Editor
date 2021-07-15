@@ -499,6 +499,8 @@ namespace XML_Project
                     StreamWriter txtoutput = new StreamWriter(savefile.FileName);
                     txtoutput.Write(compressed);
                     txtoutput.Close();
+                    string decompressed = Decompress(compressed);
+                    txtArea.Text = decompressed;
                 }
                 
             }
