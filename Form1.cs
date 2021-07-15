@@ -407,6 +407,13 @@ namespace XML_Project
                 txtoutput.Close();
             }
         }
+
+      public static string Decompress(List<int> compressed)
+        { 
+
+         }
+
+
       public static List<int> Compress(string to_compress)
         {
             Dictionary<string, int> dic = new Dictionary<string, int>();
